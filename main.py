@@ -113,6 +113,11 @@ def done() :
     else :
         return render_template("success.html", link=request.base_url.strip("api/new_link") + "/" + short_link)
 
+@app.route("/api/get_link/<link>", methods=['GET'])
+def apiGetLink(link) :
+    short_url = getLink(link)
+    return short_url
+
 @app.route("/<link>", methods=['GET'])
 def link(link) :
     org_url = getLink(link)
