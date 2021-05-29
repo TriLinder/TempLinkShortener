@@ -1,6 +1,6 @@
 # Temporary link shortener
 
- A lightweight, easy to use website to shorten your links, for a short  amount of time.
+ A lightweight, easy to use website to shorten your links, for a set amount of time.
 
 ‏‏‎ ‎
 
