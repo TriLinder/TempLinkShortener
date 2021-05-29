@@ -7,7 +7,7 @@
         <h1>Temporary link shortener</h1>
         <form action="/api/new_link" method="POST">
             <label for="org_url">Your long link: </label>
-            <input type="text" name="org_url" placeholder="{{def_url}}"><br>
+            <input type="text" name="org_url" placeholder="{{def_url}}" maxlength="{{max_length}}"><br>
             <label for="expire_value">Expires in: </label>
             <input type="number" name="expire_value" placeholder="{{def_time}}">
             <select name="expire_type">

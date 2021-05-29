@@ -10,7 +10,7 @@ def_time = 15 #The amount of minutes used, if the user doesnt specify
 def_length = 4 #The default length of the shortned link, will incrase itself if the links start running out
 deleteExpiredOnStart = True #Wheter or not should the server go through all links and delete expired ones on startup, this could take a while with a lot of links
 maxExpiryTime = 90 #The maximum amount of time in days the user can set the expiry time to
-lengthLimit = 1024 #A character length limit of the original URL
+lengthLimit = 1024 #A character length limit for the original URL
 port = 5000 #The port to host the website on
 #--------------------#
 
@@ -87,7 +87,7 @@ if deleteExpiredOnStart :
 
 @app.route("/", methods=['GET'])
 def home():
-    return render_template("main.html", def_url=def_url, def_time=def_time)
+    return render_template("main.html", def_url=def_url, def_time=def_time, max_length=lengthLimit)
 
 @app.route("/api/new_link", methods=['POST'])
 def done() :
