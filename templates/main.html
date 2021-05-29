@@ -1,0 +1,45 @@
+<html>
+    <head>
+        <title>Temporary link shortener</title>
+    </head>
+    <body>
+        <div class="box">
+        <h1>Temporary link shortener</h1>
+        <form action="/api/new_link" method="POST">
+            <label for="org_url">Your long link: </label>
+            <input type="text" name="org_url" placeholder="{{def_url}}"><br>
+            <label for="expire_value">Expires in: </label>
+            <input type="number" name="expire_value" placeholder="{{def_time}}">
+            <select name="expire_type">
+                <option value="seconds" selected>seconds</option>
+                <option value="minutes" selected>minutes</option>
+                <option value="hours">hours</option>
+                <option value="days">days</option>
+                <option value="months">months</option>
+            </select><br>
+            <input type="submit" value="Shorten">
+        </form>
+        </div>
+        <div class="footer">
+            <a href="https://github.com/TriLinder/TempLinkShortener">GitHub</a><p></p>
+        </div>
+    </body>
+    <style>
+        body {
+            text-align: center;
+            border: 0.417vw;
+            border: solid;
+        }
+
+        .box {
+            padding: 15%;
+        }
+
+        .footer {
+            bottom: 0%;
+            left: 50%;
+            position: fixed;
+            text-align: center;
+        }
+    </style>
+</html>
