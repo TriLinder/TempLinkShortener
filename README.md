@@ -32,9 +32,9 @@
 
 **Shorten a link using the API**
 
-‏‏‎ ‎
+To shorten a link, make a `POST` request to `/api/new_link/`, with the `User-Agent` header set to `api`. For `data` follow the example below.
 
-To shorten a link, make a `POST` request to `/api/new_link/`, with the `User-Agent` header set to `api`.
+
 
 This will simply return the short link ID, for example https://trilinder.pythonanywhere.com/VHiX has the ID of VHiX
 
@@ -56,8 +56,6 @@ short_url = r.content
 ‏‏‎ ‎
 
 **Get the original link using the API**
-
-‏‏‎ ‎
 
 To get the original link, make a `GET` request to `/api/get_link/<yourID>/`
 
