@@ -27,5 +27,3 @@
 **How to configure**
 
     The conifguration is located on the top of the `main.py` file
-
- 
