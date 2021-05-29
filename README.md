@@ -8,7 +8,7 @@
 
 **How to use**
 
-    I am currently hosting this site on http://trilinder.pythonnywhere.com/
+    I am currently hosting this site on http://trilinder.pythonnywhere.com/, so you can check it out there
 
 ‏‏‎ ‎
 
