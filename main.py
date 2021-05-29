@@ -11,6 +11,7 @@ def_length = 4 #The default length of the shortned link, will incrase itself if 
 deleteExpiredOnStart = True #Wheter or not should the server go through all links and delete expired ones on startup, this could take a while with a lot of links
 maxExpiryTime = 90 #The maximum amount of time in days the user can set the expiry time to
 lengthLimit = 1024 #A character length limit for the original URL
+allowNewLinks = True #Wheter or not it should be possible to generate a new short link, might be useful to set to False, if you plan to shut down the site soon
 port = 5000 #The port to host the website on
 #--------------------#
 
@@ -40,6 +41,9 @@ def toSeconds(value, type) :
         return toSeconds(value, "minutes")
 
 def genLink(org_url, expire, length) :
+    if not allowNewLinks :
+        return "generation disabled"
+    
     short_url = ""
 
     for i in range(length) :
@@ -87,7 +91,10 @@ if deleteExpiredOnStart :
 
 @app.route("/", methods=['GET'])
 def home():
-    return render_template("main.html", def_url=def_url, def_time=def_time, max_length=lengthLimit)
+    if allowNewLinks :
+        return render_template("main.html", def_url=def_url, def_time=def_time, max_length=lengthLimit)
+    else :
+        return render_template("generation_disabled.html")
 
 @app.route("/api/new_link", methods=['POST'])
 def done() :
@@ -120,6 +127,8 @@ def done() :
     if request.headers.get('User-Agent') == "api" :
         return(short_link)
     else :
+        if short_link == "generation disabled" :
+            return redirect("../")
         return render_template("success.html", link=request.base_url.strip("api/new_link") + "/" + short_link)
 
 @app.route("/api/get_link/<link>", methods=['GET'])

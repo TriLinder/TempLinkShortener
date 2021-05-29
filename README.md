@@ -35,6 +35,7 @@ def_length = 4 #The default length of the shortned link, will incrase itself if 
 deleteExpiredOnStart = True #Wheter or not should the server go through all links and delete expired ones on startup, this could take a while with a lot of links
 maxExpiryTime = 90 #The maximum amount of time in days the user can set the expiry time to
 lengthLimit = 1024 #A character length limit for the original URL
+allowNewLinks = True #Wheter or not it should be possible to generate a new short link, might be useful to set to False, if you plan to shut down the site soon
 port = 5000 #The port to host the website on
 ```
 
