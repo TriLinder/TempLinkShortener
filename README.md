@@ -29,3 +29,4 @@
     The conifguration is located on the top of the `main.py` file
 
  
+This whole project is licensed under the GNU GPLv3 license
