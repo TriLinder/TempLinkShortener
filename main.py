@@ -92,8 +92,17 @@ def home():
 @app.route("/api/new_link", methods=['POST'])
 def done() :
     org_url = request.form["org_url"]
-    expire_value = request.form["expire_value"].split(".")[0]
+    expire_value_org = request.form["expire_value"].split(".")[0]
     expire_type = request.form["expire_type"]
+
+    expire_value = ""
+
+    for x in str(expire_value_org) :
+        try :
+            if int(x) in range(10) :
+                expire_value = expire_value + x
+        except :
+            pass
 
     if org_url.strip() == "" or org_url == "none" or len(org_url) > lengthLimit :
         org_url = def_url
