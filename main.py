@@ -7,9 +7,10 @@ import os
 #--------------------#
 def_url = "https://www.youtube.com/watch?v=jeg_TJvkSjg" #The URL addres used, if the user doesnt set one
 def_time = 15 #The amount of minutes used, if the user doesnt specify
-def_length = 4 #The default lenght of the shortned link, will incrase itself if the links start running out
+def_length = 4 #The default length of the shortned link, will incrase itself if the links start running out
 deleteExpiredOnStart = True #Wheter or not should the server go through all links and delete expired ones on startup, this could take a while with a lot of links
 maxExpiryTime = 90 #The maximum amount of time in days the user can set the expiry time to
+lengthLimit = 1024 #A character length limit of the original URL
 port = 5000 #The port to host the website on
 #--------------------#
 
@@ -94,7 +95,7 @@ def done() :
     expire_value = request.form["expire_value"].split(".")[0]
     expire_type = request.form["expire_type"]
 
-    if org_url.strip() == "" or org_url == "none" :
+    if org_url.strip() == "" or org_url == "none" or len(org_url) > lengthLimit :
         org_url = def_url
     
     if expire_value.strip() == "" :
