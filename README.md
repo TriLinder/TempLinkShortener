@@ -73,7 +73,7 @@ Python example:
 import requests
 
 id = "vRUa"
-r = requests.get("http://localhost:5000/api/get_link/" + id)
+r = requests.get("https://trilinder.pythonanywhere.com/api/get_link/" + id)
 
 originalLink = r.content
 ```
