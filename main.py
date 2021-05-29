@@ -5,7 +5,7 @@ from time import time
 import os
 
 #--------------------#
-def_url = "https://www.youtube.com/watch?v=jeg_TJvkSjg" #The URL addres used, if the user doesnt set one
+def_url = "https://www.youtube.com/watch?v=jeg_TJvkSjg" #The URL address used, if the user doesnt set one
 def_time = 15 #The amount of minutes used, if the user doesnt specify
 def_length = 4 #The default length of the shortned link, will incrase itself if the links start running out
 deleteExpiredOnStart = True #Wheter or not should the server go through all links and delete expired ones on startup, this could take a while with a lot of links
