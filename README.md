@@ -27,9 +27,3 @@
 **How to configure**
 
     The conifguration is located on the top of the `main.py` file
-
- 
-This project is licensed under the GNU GPLv3 license
-‏‏‎ ‎
-‏‏‎ ‎
-This whole project is licensed under the GNU GPLv3 license
