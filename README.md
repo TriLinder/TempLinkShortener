@@ -30,8 +30,6 @@
 
 ‏‏‎ ‎
 
-‏‏‎ ‎
-
 **Shorten a link using the API**
 
 ‏‏‎ ‎
