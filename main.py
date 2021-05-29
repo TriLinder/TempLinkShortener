@@ -108,7 +108,10 @@ def done() :
 
     short_link = genLink(org_url, expire_seconds, def_length)
 
-    return render_template("success.html", link=request.base_url.strip("api/new_link") + "/" + short_link)
+    if request.headers.get('User-Agent') == "api" :
+        return(short_link)
+    else :
+        return render_template("success.html", link=request.base_url.strip("api/new_link") + "/" + short_link)
 
 @app.route("/<link>", methods=['GET'])
 def link(link) :
