@@ -42,7 +42,7 @@ port = 5000 #The port to host the website on
 
 **Shorten a link using the API**
 
-To shorten a link, make a `POST` request to `/api/new_link/`, with the `User-Agent` header set to `api`. For `data` follow the example below.
+To shorten a link, make a `POST` request to `/api/new_link/`, with the `User-Agent` header set to `api`. For `data` follow the python example below.
 
 
 
