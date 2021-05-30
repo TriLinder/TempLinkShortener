@@ -5,12 +5,12 @@ from time import time
 import os
 
 #--------------------#
-def_url = "https://www.youtube.com/watch?v=jeg_TJvkSjg" #The URL address used, if the user doesnt set one
-def_time = 15 #The amount of minutes used, if the user doesnt specify
+def_url = "https://www.youtube.com/watch?v=jeg_TJvkSjg" #The URL address used, when the user doesnt set one
+def_time = 15 #The amount of minutes used, when the user doesnt specify
 def_length = 4 #The default length of the shortned link, will incrase itself if the links start running out
 deleteExpiredOnStart = True #Wheter or not should the server go through all links and delete expired ones on startup, this could take a while with a lot of links
-maxExpiryTime = 90 #The maximum amount of time in days the user can set the expiry time to
-lengthLimit = 1024 #A character length limit for the original URL
+maxExpiryTime = 75 #The maximum amount of time in days the user can set the expiry time to
+lengthLimit = 2048 #A character length limit for the original URL
 allowNewLinks = True #Wheter or not it should be possible to generate a new short link, might be useful to set to False, if you plan to shut down the site soon
 port = 5000 #The port to host the website on
 #--------------------#
@@ -49,6 +49,9 @@ def genLink(org_url, expire, length) :
     for i in range(length) :
         short_url = short_url + choice(abc)
 
+    if not (org_url.startswith("https://") or org_url.startswith("http://")) :
+        org_url = "http://" + org_url
+
     if os.path.isdir(Path("links/" + short_url)) :
         print("Oh no! An existing short url was generated. We may be getting spammed.")
         return genLink(org_url, expire, length + 1)
@@ -85,7 +88,10 @@ def getLink(short_url) :
 
 if deleteExpiredOnStart :
     for x in os.listdir("links") :
-        getLink(x)
+        try :
+            getLink(x)
+        except :
+            pass
 
 #---------------
 
@@ -144,4 +150,5 @@ def link(link) :
     else :
         return redirect(org_url)
 
-app.run(threaded=True, host="0.0.0.0", port=port)
+if __name__ == "__main__" :
+    app.run(threaded=True, host="0.0.0.0", port=port)
