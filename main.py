@@ -43,7 +43,7 @@ def toSeconds(value, type) :
 
 def genLink(org_url, expire, length) :
     if emergencyShutdownCheck and os.path.isfile(".emergency_shutdown") :
-        allowNewLinks = False
+        return "generation disabled"
 
     if not allowNewLinks :
         return "generation disabled"
@@ -102,7 +102,7 @@ if deleteExpiredOnStart :
 @app.route("/", methods=['GET'])
 def home():
     if emergencyShutdownCheck and os.path.isfile(".emergency_shutdown") :
-        allowNewLinks = False
+        return render_template("generation_disabled.html")
 
     if allowNewLinks :
         return render_template("main.html", def_url=def_url, def_time=def_time, max_length=lengthLimit)
