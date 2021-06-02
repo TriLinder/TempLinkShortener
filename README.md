@@ -8,7 +8,11 @@
 
 **How to use**
 
-    You can use the public version without any limits [here](https://trilinder.pythonanywhere.com/).
+    You can use the public version [here](https://trilinder.pythonanywhere.com/).
+
+    The site does not have any limits set, so please don't abuse it.
+
+    I've got only 512 MB of storage space.
 
 ‏‏‎ ‎
 
@@ -29,14 +33,15 @@
     The conifguration is located on the top of the `main.py` file
 
 ```python
-def_url = "https://www.youtube.com/watch?v=jeg_TJvkSjg" #The URL address used, if the user doesnt set one
-def_time = 15 #The amount of minutes used, if the user doesnt specify
+def_url = "https://www.youtube.com/watch?v=jeg_TJvkSjg" #The URL address used, when the user doesnt set one
+def_time = 15 #The amount of minutes used, when the user does not specify
 def_length = 4 #The default length of the shortned link, will incrase itself if the links start running out
 deleteExpiredOnStart = True #Wheter or not should the server go through all links and delete expired ones on startup, this could take a while with a lot of links
-maxExpiryTime = 90 #The maximum amount of time in days the user can set the expiry time to
-lengthLimit = 1024 #A character length limit for the original URL
+maxExpiryTime = 75 #The maximum amount of time in days the user can set the expiry time to
+lengthLimit = 2048 #A character length limit for the original URL
 allowNewLinks = True #Wheter or not it should be possible to generate a new short link, might be useful to set to False, if you plan to shut down the site soon
 port = 5000 #The port to host the website on
+emergencyShutdownCheck = False #If enabled, a check for a file named ".emergency_shutdown" is made everytime a link is generated or when "/" is loaded, if it exists, the website will appear as if "allowNewLinks" was set to False.
 ```
 
 ‏‏‎ ‎
@@ -44,8 +49,6 @@ port = 5000 #The port to host the website on
 **Shorten a link using the API**
 
 To shorten a link, make a `POST` request to `/api/new_link/`, with the `User-Agent` header set to `api`. For `data` follow the python example below.
-
-
 
 This will simply return the short link ID, for example https://trilinder.pythonanywhere.com/VHiX has the ID of VHiX
 

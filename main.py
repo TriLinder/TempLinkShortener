@@ -6,13 +6,14 @@ import os
 
 #--------------------#
 def_url = "https://www.youtube.com/watch?v=jeg_TJvkSjg" #The URL address used, when the user doesnt set one
-def_time = 15 #The amount of minutes used, when the user doesnt specify
+def_time = 15 #The amount of minutes used, when the user does not specify
 def_length = 4 #The default length of the shortned link, will incrase itself if the links start running out
 deleteExpiredOnStart = True #Wheter or not should the server go through all links and delete expired ones on startup, this could take a while with a lot of links
 maxExpiryTime = 75 #The maximum amount of time in days the user can set the expiry time to
 lengthLimit = 2048 #A character length limit for the original URL
 allowNewLinks = True #Wheter or not it should be possible to generate a new short link, might be useful to set to False, if you plan to shut down the site soon
 port = 5000 #The port to host the website on
+emergencyShutdownCheck = False #If enabled, a check for a file named ".emergency_shutdown" is made everytime a link is generated or when "/" is loaded, if it exists, the website will appear as if "allowNewLinks" was set to False.
 #--------------------#
 
 app = Flask(__name__)
@@ -41,6 +42,9 @@ def toSeconds(value, type) :
         return toSeconds(value, "minutes")
 
 def genLink(org_url, expire, length) :
+    if emergencyShutdownCheck and os.path.isfile(".emergency_shutdown") :
+        allowNewLinks = False
+
     if not allowNewLinks :
         return "generation disabled"
     
@@ -97,18 +101,19 @@ if deleteExpiredOnStart :
 
 @app.route("/", methods=['GET'])
 def home():
+    if emergencyShutdownCheck and os.path.isfile(".emergency_shutdown") :
+        allowNewLinks = False
+
     if allowNewLinks :
         return render_template("main.html", def_url=def_url, def_time=def_time, max_length=lengthLimit)
     else :
         return render_template("generation_disabled.html")
 
 @app.route("/api/new_link", methods=['POST'])
-def done() :
+def apiNewLink() :
     org_url = request.form["org_url"]
     expire_value_org = request.form["expire_value"].split(".")[0]
     expire_type = request.form["expire_type"]
-
-    expire_value = ""
 
     for x in str(expire_value_org) :
         try :
