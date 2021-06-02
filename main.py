@@ -115,10 +115,12 @@ def apiNewLink() :
     expire_value_org = request.form["expire_value"].split(".")[0]
     expire_type = request.form["expire_type"]
 
+    expire_value = ""
+
     for x in str(expire_value_org) :
         try :
             if int(x) in range(10) :
-                expire_value = expire_value + x
+                expire_value = expire_value + str(x)
         except :
             pass
 
