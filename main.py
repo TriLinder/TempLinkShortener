@@ -74,6 +74,8 @@ def genLink(org_url, expire, length) :
     return short_url
 
 def getLink(short_url) :
+    short_url = short_url.replace(".","")
+
     if not os.path.isdir(Path("links/" + short_url)) :
         return "none"
     
