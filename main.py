@@ -155,7 +155,10 @@ def link(link) :
     if org_url == "none" :
         return render_template("invalid_link.html")
     else :
-        return redirect(org_url)
+        try :
+            return redirect(org_url)
+        except :
+            return redirect(def_url)
 
 if __name__ == "__main__" :
     app.run(threaded=True, host="0.0.0.0", port=port)
